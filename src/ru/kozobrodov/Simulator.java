@@ -21,6 +21,7 @@ class Simulator {
                     for (int j = 1; j < lineParts.length; j++) {
                         positions[j - 1] = Double.valueOf(lineParts[j]).intValue();
                     }
+                    Arrays.sort(positions);
                     crossingoverPositions[lineNum++][i] = positions;
                 }
             } catch (IOException e) {
@@ -106,8 +107,8 @@ class Simulator {
         int breakNumber = 0;
         boolean itsCrossingoverTime = false;
         for (Pair p : mate) {
-            if (positions[currentChromosome].length > 0 &&
-                    positions[currentChromosome][breakNumber] == position
+            if (positions[currentChromosome].length > breakNumber &&
+                    positions[currentChromosome][breakNumber++] == position
             ) {
                 itsCrossingoverTime = !itsCrossingoverTime;
             }
